@@ -38,10 +38,10 @@ public class Frustum_test : MonoBehaviour
         Vector3 camPos = CameraObject.transform.position;
 
         // [change these parts]
-        float x_l = -0.5f;
-        float x_r = +0.5f;
-        float y_t = +0.5f;
-        float y_b = -0.5f;
+        float x_l = -camPos.x - 0.5f;
+        float x_r = -camPos.x + 0.5f;
+        float y_t = -camPos.y + 0.5f;
+        float y_b = -camPos.y - 0.5f;
 
         float z_n = -camPos.z;
         float z_f = 1000.0f - camPos.z;
