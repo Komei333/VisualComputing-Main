@@ -16,11 +16,15 @@ public class OpenCV_test : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Start()");
+
         script = gameObject.GetComponent<WebCamTextureBehaviour>();
     }
 
     void Update()
     {
+        Debug.Log("Update()");
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Texture2D tex2D = script.webCamTexture.ToTexture2D();
