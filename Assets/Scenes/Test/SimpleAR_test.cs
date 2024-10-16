@@ -87,8 +87,8 @@ public class SimpleAR_test : MonoBehaviour
                 MatOfPoint2f imagePoints  = new MatOfPoint2f(_imagePoints.Length , 1, _imagePoints);
 
                 Matrix4x4 pose = Matrix4x4.identity;
-                pose = Calib3d.GetCameraPose(objectPoints, imagePoints, newCameraMatrix, distCoeffs_zero); // [for reference]
-                //pose = GetCameraPose(objectPoints, imagePoints, newCameraMatrix, distCoeffs_zero);
+                //pose = Calib3d.GetCameraPose(objectPoints, imagePoints, newCameraMatrix, distCoeffs_zero); // [for reference]
+                pose = GetCameraPose(objectPoints, imagePoints, newCameraMatrix, distCoeffs_zero);
                 Scene3D.Matrix2RigidTransform(pose, CameraObject.transform);
             }
             else
@@ -176,16 +176,16 @@ public class SimpleAR_test : MonoBehaviour
 
         // conversion of basis
         Matrix4x4 P_inv = new Matrix4x4(
-            new Vector4( 1,  0,  0, 0),
-            new Vector4( 0,  1,  0, 0),
-            new Vector4( 0,  0,  1, 0),
-            new Vector4( 0,  0,  0, 1));
+            new Vector4(1, 0, 0, 0),
+            new Vector4(0, 0, -1, 0),
+            new Vector4(0, -1, 0, 0),
+            new Vector4(0, 0, 0, 1));
 
         Matrix4x4 Q = new Matrix4x4(
-            new Vector4( 1,  0,  0, 0),
-            new Vector4( 0,  1,  0, 0),
-            new Vector4( 0,  0,  1, 0),
-            new Vector4( 0,  0,  0, 1));
+            new Vector4(-1, 0, 0, 0),
+            new Vector4(0, 1, 0, 0),
+            new Vector4(0, 0, -1, 0),
+            new Vector4(0, 0, 0, 1));
 
         return P_inv * PoseRT * Q;
     }
